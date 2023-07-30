@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<datasets>
+    <dataset id="english">
+        <firstName>FirstName</firstName>
+        <lastName>LastName</lastName>
+        <phone>phone</phone>
+        <city>city</city>
+    </dataset>
+
+    <dataset id="srpski">
+        <firstName>Ime</firstName>
+        <lastName>Prezime</lastName>
+        <phone>telefon</phone>
+        <city>grad</city>
+    </dataset>
+
+</datasets>
