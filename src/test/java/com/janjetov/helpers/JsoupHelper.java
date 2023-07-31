@@ -13,11 +13,11 @@ public class JsoupHelper {
         return Jsoup.parse(file);
     }
 
-    public Elements getElementsStringCSS(Document doc, String cssQuery){
+    public Elements getElementsCSS(Document doc, String cssQuery){
         return doc.select(cssQuery);
     }
 
-    public Elements getElementsStringXPath(Document doc, String xPath){
+    public Elements getElementsXPath(Document doc, String xPath){
         return doc.selectXpath(xPath);
     }
 
