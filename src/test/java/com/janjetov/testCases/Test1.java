@@ -5,10 +5,13 @@ import com.janjetov.helpers.JsoupHelper;
 import com.janjetov.helpers.XMLHelper;
 import com.janjetov.pageObject.WWWPage;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import java.io.File;
+import java.util.ArrayList;
 
 public class Test1 {
 
@@ -30,11 +33,18 @@ public class Test1 {
 
         WWWPage wwwPage = new WWWPage();
 
-        enums.Languages[] languages = enums.Languages.values();
+        Elements dataSetElem = jh.getElementsXPath(doc, "//datasets/dataset");
+        ArrayList<String> idList = new ArrayList<String>();
+        for (Element elem : dataSetElem) {
+            idList.add(elem.attr("id"));
+        }
+
+        System.out.println("id list: " + idList.toString());
 
         SoftAssert soft;
-        for (enums.Languages lang : languages) {
-            soft = wwwPage.checkOneLanguage(jh, doc, lang);
+
+        for (String id : idList) {
+            soft = wwwPage.checkOneLanguage(jh, doc, id);
             soft.assertAll();
         }
 

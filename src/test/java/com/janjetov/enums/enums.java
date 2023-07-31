@@ -1,7 +1,7 @@
 package com.janjetov.enums;
 
 public class enums {
-    public enum Languages{
+    public enum Language {
         ENGLISH, SRPSKI;
 
         public String toString(){
@@ -14,6 +14,15 @@ public class enums {
                     return null;
             }
 
+        }
+
+        //needed for WebElement emulation
+        public static Language strToEnum(String id) throws Exception{
+            switch (id) {
+                case "srpski": return SRPSKI;
+                case "english":  return ENGLISH;
+                default: return null;
+            }
         }
     }
 }

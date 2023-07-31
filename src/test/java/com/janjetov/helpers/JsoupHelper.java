@@ -2,10 +2,12 @@ package com.janjetov.helpers;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class JsoupHelper {
 
@@ -42,5 +44,13 @@ public class JsoupHelper {
         String cssQuery = "dataset#srpski city";
         String city = jh.getStringCSS(doc,cssQuery);
         System.out.println("srpski city: " + city);
+
+        Elements dataSetElem = jh.getElementsXPath(doc, "//datasets/dataset");
+        ArrayList<String> idList = new ArrayList<String>();
+        for (Element elem : dataSetElem) {
+            idList.add(elem.attr("id"));
+        }
+
+        System.out.println("id list: " + idList.toString());
     }
 }

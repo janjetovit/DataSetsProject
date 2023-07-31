@@ -8,7 +8,7 @@ import org.testng.asserts.SoftAssert;
 public class WWWPage {
 
     //substitute this method with real values from WebElement from page
-    public String getFirstName(enums.Languages lang){
+    public String getFirstName(enums.Language lang){
         switch (lang){
             case ENGLISH:
                 return "FirstName";
@@ -20,7 +20,7 @@ public class WWWPage {
     }
 
     //substitute this method with real values from WebElement from page
-    public String getLastName(enums.Languages lang){
+    public String getLastName(enums.Language lang){
         switch (lang){
             case ENGLISH:
                 return "LastName";
@@ -32,7 +32,7 @@ public class WWWPage {
     }
 
     //substitute this method with real values from WebElement from page
-    public String getPhone(enums.Languages lang){
+    public String getPhone(enums.Language lang){
         switch (lang){
             case ENGLISH:
                 return "phone";
@@ -44,7 +44,7 @@ public class WWWPage {
     }
 
     //substitute this method with real values from WebElement from page
-    public String getCity(enums.Languages lang){
+    public String getCity(enums.Language lang){
         switch (lang){
             case ENGLISH:
                 return "city";
@@ -55,22 +55,21 @@ public class WWWPage {
         }
     }
 
-
-    public SoftAssert checkOneLanguage(JsoupHelper jh, Document doc, enums.Languages lang){
+    public SoftAssert checkOneLanguage(JsoupHelper jh, Document doc, String id) throws Exception {
         SoftAssert soft = new SoftAssert();
 
-        System.out.println("\nValidating '" + lang.toString() + "' language...");
+        System.out.println("\nValidating '" + enums.Language.strToEnum(id) + "' language...");
 
-        String firstNameDS = jh.getStringXPath(doc, "//datasets/dataset[@id='" + lang.toString() + "']/firstname");  //must be lowerCase !
-        String lastNameDS = jh.getStringXPath(doc, "//datasets/dataset[@id='" + lang.toString() + "']/lastname");
-        String phoneDS = jh.getStringXPath(doc, "//datasets/dataset[@id='" + lang.toString() + "']/phone");
-        String cityDS = jh.getStringXPath(doc, "//datasets/dataset[@id='" + lang.toString() + "']/city");
+        String firstNameDS = jh.getStringXPath(doc, "//datasets/dataset[@id='" + id + "']/firstname");  //must be lowerCase !
+        String lastNameDS = jh.getStringXPath(doc, "//datasets/dataset[@id='" + id + "']/lastname");
+        String phoneDS = jh.getStringXPath(doc, "//datasets/dataset[@id='" +id + "']/phone");
+        String cityDS = jh.getStringXPath(doc, "//datasets/dataset[@id='" + id + "']/city");
 
         //values from WebElement from page:
-        String firstName = getFirstName(lang);
-        String lastName = getLastName(lang);
-        String phone = getPhone(lang);
-        String city = getCity(lang);
+        String firstName = getFirstName(enums.Language.strToEnum(id));
+        String lastName = getLastName(enums.Language.strToEnum(id));
+        String phone = getPhone(enums.Language.strToEnum(id));
+        String city = getCity(enums.Language.strToEnum(id));
 
         soft.assertTrue(firstNameDS.equalsIgnoreCase(firstName), "Assert not passed: " + firstNameDS + "<>" + firstName);
         System.out.println("passed: " + firstNameDS + "=" + firstName);
