@@ -18,11 +18,12 @@ public class enums {
 
         //needed for WebElement emulation
         public static Language strToEnum(String id) throws Exception{
-            switch (id) {
-                case "srpski": return SRPSKI;
-                case "english":  return ENGLISH;
-                default: return null;
+            if ("srpski".equals(id)) {
+                return SRPSKI;
+            } else if ("english".equals(id)) {
+                return ENGLISH;
             }
+            return null;
         }
     }
 }
