@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <datasets>
-    <dataset id="english">
+    <dataset id="english" summary = 'eee'>
         <firstName>FirstName</firstName>
         <lastName>LastName</lastName>
         <phone>phone</phone>
         <city>city</city>
     </dataset>
 
-    <dataset id="srpski">
+    <dataset id="srpski" summary = "sss">
         <firstName>Ime</firstName>
         <lastName>Prezime</lastName>
         <phone>telefon</phone>

@@ -12,6 +12,8 @@ import org.testng.asserts.SoftAssert;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Test1 {
 
@@ -34,21 +36,26 @@ public class Test1 {
         WWWPage wwwPage = new WWWPage();
 
         Elements dataSetElem = jh.getElementsXPath(doc, "//datasets/dataset");
-        ArrayList<String> idList = new ArrayList<String>();
+        HashMap<String,String> idHM = new HashMap<>();
 
         for (Element elem : dataSetElem) {
             String id = elem.attr("id");
-            if (idList.contains(id)){
+            String sum = elem.attr("summary");
+
+            if(idHM.containsKey(id)){
                 throw new Exception("Duplicated dataset id = '" + id + "'");
             }
-            idList.add(elem.attr("id"));
+
+            idHM.put(id, sum);
         }
 
-        System.out.println("id list: " + idList.toString());
+        for (Map.Entry<String, String> set : idHM.entrySet()) {
+            // Printing all elements of a Map
+            System.out.println("id: " + set.getKey() + ", summary = " + set.getValue());
+        }
 
         SoftAssert soft;
-
-        for (String id : idList) {
+        for (String id : idHM.keySet()) {
             soft = wwwPage.checkOneLanguage(jh, doc, id);
             soft.assertAll();
         }
