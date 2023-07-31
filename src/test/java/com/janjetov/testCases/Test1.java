@@ -35,7 +35,12 @@ public class Test1 {
 
         Elements dataSetElem = jh.getElementsXPath(doc, "//datasets/dataset");
         ArrayList<String> idList = new ArrayList<String>();
+
         for (Element elem : dataSetElem) {
+            String id = elem.attr("id");
+            if (idList.contains(id)){
+                throw new Exception("Duplicated dataset id = '" + id + "'");
+            }
             idList.add(elem.attr("id"));
         }
 

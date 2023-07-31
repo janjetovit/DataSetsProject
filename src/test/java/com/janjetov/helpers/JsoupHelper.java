@@ -32,7 +32,7 @@ public class JsoupHelper {
     }
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
         JsoupHelper jh = new JsoupHelper();
         File f = new File("src/test/java/com/janjetov/data/dataSets.xml");
         Document doc = jh.createDocumentFromFile(f);
@@ -47,7 +47,12 @@ public class JsoupHelper {
 
         Elements dataSetElem = jh.getElementsXPath(doc, "//datasets/dataset");
         ArrayList<String> idList = new ArrayList<String>();
+        String id;
         for (Element elem : dataSetElem) {
+            id = elem.attr("id");
+            if (idList.contains(id)){
+                throw new Exception("Duplicated dataset id= '" + id + "'");
+            }
             idList.add(elem.attr("id"));
         }
 
